@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="yellow">#F7FF0C</color>
+    <color name="mustard">#FFD84C</color>
+    <color name="ceitic_blue">#006FD0</color>
+    <color name="pale_azure">#7EDDFF</color>
+    <color name="snow_white">#E4E4E4</color>
+    <color name="gunmetal">#283236</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFF</color>
+</resources>

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Cocktails</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="add_cocktail">ADD COCKTAIL</string>
+    <string name="image_contentDescription">image</string>
+    <string name="lbl_drink">Title</string>
+    <string name="lbl_category">Category</string>
+    <string name="lbl_alcoholic">Alcoholic</string>
+    <string name="lbl_glass">Glass</string>
+    <string name="lbl_instructions">Instructions</string>
+    <string name="lbl_ingredients">Ingredients</string>
+    <string name="lbl_measures">Measures</string>
+</resources>
