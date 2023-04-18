@@ -12,4 +12,9 @@
     <string name="lbl_instructions">Instructions</string>
     <string name="lbl_ingredients">Ingredients</string>
     <string name="lbl_measures">Measures</string>
+
+    <string name="title_select_image_action">Select Image</string>
+    <string name="lbl_camera">Camera</string>
+    <string name="lbl_gallery">Gallery</string>
+
 </resources>
