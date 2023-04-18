@@ -1,5 +1,6 @@
 package com.example.cocktails.view.activities
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.cocktails.R
 import com.example.cocktails.databinding.ActivityAddUpdateCocktailBinding
+import com.example.cocktails.databinding.DialogCustomImageSelectionBinding
 
 class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var mBinding: ActivityAddUpdateCocktailBinding
@@ -32,12 +34,28 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
         if(v!= null) {
             when (v.id) {
                 R.id.iv_add_cocktail_image -> {
-                    Toast.makeText(this, "You have clicked the ImageView",
-                        Toast.LENGTH_SHORT).show()
+                    customImageSelectionDialog()
                     return
                 }
             }
         }
     }
+    private fun customImageSelectionDialog() {
+        val dialog = Dialog(this)
+        val binding: DialogCustomImageSelectionBinding = DialogCustomImageSelectionBinding.inflate(layoutInflater)
+        dialog.setContentView(binding.root)
+
+        binding.tvCamera.setOnClickListener{
+            Toast.makeText(this, "Camera Clicked", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+
+        binding.tvGallery.setOnClickListener{
+            Toast.makeText(this, "Gallery Clicked", Toast.LENGTH_SHORT).show()
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
 
 }

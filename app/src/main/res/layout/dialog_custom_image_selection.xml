@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="@dimen/_10sdp"
     app:chainUseRtl="true"
-    android:background="@color/gunmetal"
+    android:background="@color/white"
     >
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_select_image_action"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/_16sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/tv_camera"
@@ -33,7 +33,7 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:text="@string/lbl_camera"
-        android:textColor="@color/white"
+        android:textColor="@color/gunmetal"
         android:textSize="@dimen/_15sdp"
         app:drawableTopCompat="@drawable/ic_vector_camera"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -50,7 +50,7 @@
         android:foreground="?attr/selectableItemBackgroundBorderless"
         android:gravity="center"
         android:text="@string/lbl_gallery"
-        android:textColor="@color/white"
+        android:textColor="@color/gunmetal"
         android:textSize="@dimen/_15sdp"
         app:drawableTopCompat="@drawable/ic_vector_gallery"
         app:layout_constraintBottom_toBottomOf="parent"
