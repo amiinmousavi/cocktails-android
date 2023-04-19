@@ -92,6 +92,7 @@
             app:layout_constraintTop_toBottomOf="@id/til_title">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
@@ -117,6 +118,7 @@
             app:layout_constraintTop_toBottomOf="@id/til_category">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_alcoholic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
@@ -141,6 +143,7 @@
             app:layout_constraintTop_toBottomOf="@id/til_alcoholic">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_glass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"

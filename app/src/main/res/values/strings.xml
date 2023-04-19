@@ -3,6 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_add_cocktail">Add Cocktail</string>
+    <string name="title_select_category">SELECT CATEGORY</string>
+    <string name="title_select_glass">SELECT GLASS TYPE</string>
+    <string name="title_select_alcoholic">REQUIRES ALCOHOL</string>
     <string name="add_cocktail">ADD COCKTAIL</string>
     <string name="image_contentDescription">image</string>
     <string name="lbl_drink">Title</string>
