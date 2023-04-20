@@ -437,7 +437,7 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
 
             Constants.ALCOHOLIC -> {
                 customListDialog.dismiss()
-                binding.etCategory.setText(item)
+                binding.etAlcoholic.setText(item)
             }
         }
     }
