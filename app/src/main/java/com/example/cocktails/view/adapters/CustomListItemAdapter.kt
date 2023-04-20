@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cocktails.databinding.ItemCustomListBinding
+import com.example.cocktails.view.activities.AddUpdateCocktailActivity
 
 class CustomListItemAdapter(private val activity: Activity,
                             private val listItems : List<String>,
@@ -25,12 +26,17 @@ class CustomListItemAdapter(private val activity: Activity,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = listItems[position]
         holder.tvText.text = item
-
+        holder.itemView.setOnClickListener{
+            if(activity is AddUpdateCocktailActivity){
+                activity.selectedListItem(item, selection)
+            }
+        }
     }
 
     // returns how many items there are
     override fun getItemCount(): Int {
         return listItems.size
     }
+
 
 }

@@ -7,7 +7,6 @@
     <string name="title_select_category">SELECT CATEGORY</string>
     <string name="title_select_glass">SELECT GLASS TYPE</string>
     <string name="title_select_alcoholic">REQUIRES ALCOHOL</string>
-    <string name="add_cocktail">ADD COCKTAIL</string>
     <string name="image_contentDescription">image</string>
     <string name="lbl_drink">Title</string>
     <string name="lbl_category">Category</string>
@@ -16,9 +15,19 @@
     <string name="lbl_instructions">Instructions</string>
     <string name="lbl_ingredients">Ingredients</string>
     <string name="lbl_measures">Measures</string>
+    <string name="lbl_add_cocktail">ADD COCKTAIL</string>
 
     <string name="title_select_image_action">Select Image</string>
     <string name="lbl_camera">Camera</string>
     <string name="lbl_gallery">Gallery</string>
 
+
+    <string name="err_msg_select_cocktail_image">Select cocktail image.</string>
+    <string name="err_msg_select_cocktail_title">Select cocktail title.</string>
+    <string name="err_msg_select_cocktail_category">Select cocktail category.</string>
+    <string name="err_msg_select_cocktail_glass">Select cocktail glass.</string>
+    <string name="err_msg_select_cocktail_alcoholic">Select if cocktail is alcoholic or not.</string>
+    <string name="err_msg_select_cocktail_instructions">Provide instructions for the cocktail.</string>
+    <string name="err_msg_select_cocktail_ingredients">Select ingredients for the cocktail.</string>
+    <string name="err_msg_select_cocktail_measures">Select measures for the ingredients</string>
 </resources>

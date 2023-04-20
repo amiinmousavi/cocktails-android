@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.Settings
+import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -51,16 +52,22 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityAddUpdateCocktailBinding
     private var imagePath: String = ""
 
+    private lateinit var customListDialog: Dialog
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityAddUpdateCocktailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         setupActionBar()
 
-        binding.ivAddCocktailImage.setOnClickListener(this)
-        binding.tilCategory.setOnClickListener(this)
-        binding.tilGlass.setOnClickListener(this)
-        binding.tilAlcoholic.setOnClickListener(this)
+        binding.ivAddCocktailImage.setOnClickListener(this@AddUpdateCocktailActivity)
+
+        binding.etCategory.setOnClickListener(this@AddUpdateCocktailActivity)
+        binding.etGlass.setOnClickListener(this@AddUpdateCocktailActivity)
+        binding.etAlcoholic.setOnClickListener(this@AddUpdateCocktailActivity)
+        binding.btnAddCocktail.setOnClickListener(this@AddUpdateCocktailActivity)
     }
 
     private fun setupActionBar() {
@@ -78,76 +85,264 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                     customImageSelectionDialog()
                     return
                 }
+
                 R.id.et_category -> {
-                    customItemsListDialog(resources.getString(R.string.title_select_category),
-                    Constants.categories(),
-                    Constants.CATEGORY)
+                    customItemsListDialog(
+                        resources.getString(R.string.title_select_category),
+                        Constants.categories(),
+                        Constants.CATEGORY
+                    )
                     return
                 }
+
                 R.id.et_glass -> {
-                    customItemsListDialog(resources.getString(R.string.title_select_glass),
-                    Constants.glasses(),
-                    Constants.GLASS)
+                    customItemsListDialog(
+                        resources.getString(R.string.title_select_glass),
+                        Constants.glasses(),
+                        Constants.GLASS
+                    )
                     return
                 }
+
                 R.id.et_alcoholic -> {
-                    customItemsListDialog(resources.getString(R.string.title_select_alcoholic),
-                    Constants.alcoholic(),
-                    Constants.ALCOHOLIC)
+                    customItemsListDialog(
+                        resources.getString(R.string.title_select_alcoholic),
+                        Constants.alcoholic(),
+                        Constants.ALCOHOLIC
+                    )
                     return
+                }
+
+                R.id.btn_add_cocktail -> {
+                    // vraag de input-values op
+                    val title = binding.etTitle.text.toString().trim { it <= ' ' }
+                    val category = binding.etCategory.text.toString().trim { it <= ' ' }
+                    val alcoholic = binding.etAlcoholic.text.toString().trim { it <= ' ' }
+                    val glass = binding.etGlass.text.toString().trim { it <= ' ' }
+                    val instructions = binding.etGlass.text.toString().trim { it <= ' ' }
+                    val ingredients = binding.etIngredients.text.toString().trim { it <= ' ' }
+                    val measures = binding.etMeasures.text.toString().trim { it <= ' ' }
+
+                    when {
+                        TextUtils.isEmpty(imagePath) -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                resources.getString(R.string.err_msg_select_cocktail_image),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        TextUtils.isEmpty(title) -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                resources.getString(R.string.err_msg_select_cocktail_title),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        TextUtils.isEmpty(category) -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                resources.getString(R.string.err_msg_select_cocktail_category),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        TextUtils.isEmpty(alcoholic) -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                resources.getString(R.string.err_msg_select_cocktail_alcoholic),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        TextUtils.isEmpty(glass) -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                resources.getString(R.string.err_msg_select_cocktail_glass),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        TextUtils.isEmpty(instructions) -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                resources.getString(R.string.err_msg_select_cocktail_instructions),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        TextUtils.isEmpty(ingredients) -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                resources.getString(R.string.err_msg_select_cocktail_ingredients),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        TextUtils.isEmpty(measures) -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                resources.getString(R.string.err_msg_select_cocktail_measures),
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                        else -> {
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                "All entries are valid.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+
+                    }
                 }
             }
         }
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Als bij het openen van de camera alles ok is verlopen moet resultcode OK zijn
+        if (resultCode == Activity.RESULT_OK) {
+
+            // Requestcode 1 of CAMERA
+            if (requestCode == CAMERA) {
+                data?.extras?.let {
+
+                    // Haal genomen foto op via de data parameter
+                    val thumbnail: Bitmap = data.extras!!.get("data") as Bitmap
+
+                    // Zet image-bitmap om in ImageView
+                    Glide.with(this).load(thumbnail).centerCrop().into(binding.ivCocktailImage)
+
+                    // Sla image op in internal storage
+                    imagePath = saveImageToInternalStorage(thumbnail)
+                    Log.i("ImagePath", imagePath)
+
+                    // Eens foto 1 keer geupdate is moet camera-thumbnail vervangen worden met edit-thumbnail
+                    binding.ivAddCocktailImage.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_vector_edit
+                        )
+                    )
+                }
+            }
+
+            // Requestcode 2 of GALLERY
+            else if (requestCode == GALLERY) {
+                data?.let {
+                    val thumbnailUri = data.data
+
+                    // Zet imageURI om in ImageView, en plaats in cache
+                    Glide.with(this).load(thumbnailUri)
+                        .centerCrop()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .listener(object : RequestListener<Drawable> {
+                            override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                Log.e("TAG", "Error loading image", e)
+
+                                // return false zodat de error placeholder kan geplaatst worden
+                                return false
+                            }
+
+                            override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                            ): Boolean {
+                                resource?.let {
+                                    val bitmap: Bitmap = resource.toBitmap()
+
+                                    imagePath = saveImageToInternalStorage(bitmap)
+
+                                    Log.i("ImagePath", imagePath)
+                                }
+                                return false
+                            }
+
+                        })
+                        .into(binding.ivCocktailImage)
+
+                    binding.ivAddCocktailImage.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_vector_edit
+                        )
+                    )
+                }
+            }
+
+            else if (resultCode == Activity.RESULT_CANCELED) {
+                Log.e("Cancelled", "The selection of the image got cancelled by user.")
+            }
+        }
+    }
+
+    /* Functie om custom image dialoog te openen & foto kiezen via camera/gallery*/
     private fun customImageSelectionDialog() {
         val dialog = Dialog(this)
+
         val binding: DialogCustomImageSelectionBinding =
             DialogCustomImageSelectionBinding.inflate(layoutInflater)
+
         dialog.setContentView(binding.root)
 
+        // Eventlistener optie camera
         binding.tvCamera.setOnClickListener {
             Dexter.withContext(this).withPermissions(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.CAMERA
             ).withListener(
                 object : MultiplePermissionsListener {
-
                     override fun onPermissionsChecked(report: MultiplePermissionsReport?) {
-                        // Als alle toestemmingen gegeven zijn in de emulator
-                        // zal de camera geopend worden om een foto te nemen
-                        report?.let{
+                        /* Als alle toestemmingen gegeven zijn in de emulator
+                        zal de camera geopend worden om een foto te nemen */
+                        report?.let {
                             if (report.areAllPermissionsGranted()) {
                                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                                 startActivityForResult(intent, CAMERA)
                             }
                         }
                     }
-                    // Als er geen toestemming gegeven is:
+
                     override fun onPermissionRationaleShouldBeShown(
                         permissions: MutableList<PermissionRequest>?,
                         token: PermissionToken?
                     ) {
                         showRationalDialogForPermissions()
                     }
-
-                }
-            ).onSameThread().check()
+                }).onSameThread().check()
 
             dialog.dismiss()
         }
 
+        // Eventlistener optie gallery
         binding.tvGallery.setOnClickListener {
             Dexter.withContext(this).withPermission(
                 Manifest.permission.READ_EXTERNAL_STORAGE,
             ).withListener(object : PermissionListener {
-                override fun onPermissionGranted(p0: PermissionGrantedResponse?) {
-                    val galleryIntent = Intent(Intent.ACTION_PICK,
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+                /* Als alle toestemmingen gegeven zijn zal de gallery
+                geopend worden om een foto te kiezen */
+                override fun onPermissionGranted(response: PermissionGrantedResponse?) {
+                    val galleryIntent = Intent(
+                        Intent.ACTION_PICK,
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+                    )
                     startActivityForResult(galleryIntent, GALLERY)
                 }
 
-                override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
+                override fun onPermissionDenied(response: PermissionDeniedResponse?) {
                     Toast.makeText(
                         this@AddUpdateCocktailActivity,
                         "You have denied the storage permission",
@@ -168,67 +363,8 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
         dialog.show()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        // Als bij het openen van de camera alles ok is verlopen moet resultcode OK zijn
-        if(resultCode == Activity.RESULT_OK) {
-            // Als de request code CAMERA, dus het nummer 1, was bij het oproepen van de activity:
-            if(requestCode == CAMERA){
-                data?.extras?.let{
-                    // genomen foto ophalen
-                    val thumbnail : Bitmap = data.extras!!.get("data") as Bitmap
-
-                    Glide.with(this).load(thumbnail).centerCrop().into(binding.ivCocktailImage)
-
-                    imagePath = saveImageToInternalStorage(thumbnail)
-                    Log.i("ImagePath", imagePath)
-
-                    // eens foto 1 keer geupdate is moet camera-thumbnail vervangen worden met edit-thumbnail
-                    binding.ivAddCocktailImage.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_vector_edit))
-                }
-            }
-            if(requestCode == GALLERY){
-                data?.let{
-                    val thumbnailUri = data.data
-
-                    Glide.with(this).load(thumbnailUri)
-                        .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .listener(object: RequestListener<Drawable> {
-                            override fun onLoadFailed(
-                                e: GlideException?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                TODO("Not yet implemented")
-                            }
-
-                            override fun onResourceReady(
-                                resource: Drawable?,
-                                model: Any?,
-                                target: Target<Drawable>?,
-                                dataSource: DataSource?,
-                                isFirstResource: Boolean
-                            ): Boolean {
-                                resource?.let{
-                                    val bitmap: Bitmap = resource.toBitmap()
-                                    imagePath = saveImageToInternalStorage(bitmap)
-                                    Log.i("ImagePath", imagePath)
-                                }
-                                return false
-                            }
-
-                        })
-                        .into(binding.ivCocktailImage)
-
-                    binding.ivAddCocktailImage.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_vector_edit))
-                }
-            } else if(resultCode == Activity.RESULT_CANCELED){
-                Log.e("Cancelled", "The selection of the image got cancelled by user.")
-            }
-        }
-    }
+    /* Functie om alert-messages te tonen als er geen toestemmingen zijn en moeten
+    toegelaten worden via app settings */
     private fun showRationalDialogForPermissions() {
         AlertDialog.Builder(this)
             .setMessage(
@@ -253,44 +389,62 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
     private fun saveImageToInternalStorage(bitmap: Bitmap): String {
         val wrapper = ContextWrapper(applicationContext)
 
+        // file returnt directory in internal storage
+        // MODE_PRIVATE = waar de file enkel toegankelijk is via de aanroepende applicatie
         var file = wrapper.getDir(IMAGE_DIRECTORY, Context.MODE_PRIVATE)
         file = File(file, "${UUID.randomUUID()}.jpg")
 
-        try{
-            val stream : OutputStream = FileOutputStream(file)
+        try {
+            val stream: OutputStream = FileOutputStream(file)
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
             stream.flush()
             stream.close()
-        }catch (e: IOException){
-           e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
         }
 
         return file.absolutePath
     }
 
-    private fun customItemsListDialog(
-        title: String,
-        itemsList: List<String>,
-        selection: String){
+    private fun customItemsListDialog(title: String, itemsList: List<String>, selection: String) {
+        customListDialog = Dialog(this@AddUpdateCocktailActivity)
 
-        val customListDialog = Dialog(this)
-        val binding : DialogCustomListBinding = DialogCustomListBinding.inflate(layoutInflater)
+        val binding: DialogCustomListBinding = DialogCustomListBinding.inflate(layoutInflater)
 
         customListDialog.setContentView(binding.root)
 
         binding.tvTitle.text = title
 
-        binding.rvList.layoutManager = LinearLayoutManager(this)
+        binding.rvList.layoutManager = LinearLayoutManager(this@AddUpdateCocktailActivity)
 
-        val adapter = CustomListItemAdapter(this, itemsList, selection)
+        val adapter = CustomListItemAdapter(this@AddUpdateCocktailActivity, itemsList, selection)
         binding.rvList.adapter = adapter
+
         customListDialog.show()
+    }
+
+    fun selectedListItem(item: String, selection: String) {
+        when (selection) {
+            Constants.CATEGORY -> {
+                customListDialog.dismiss()
+                binding.etCategory.setText(item)
+            }
+
+            Constants.GLASS -> {
+                customListDialog.dismiss()
+                binding.etGlass.setText(item)
+            }
+
+            Constants.ALCOHOLIC -> {
+                customListDialog.dismiss()
+                binding.etCategory.setText(item)
+            }
+        }
     }
 
     companion object {
         private const val CAMERA = 1
         private const val GALLERY = 2
-
         private const val IMAGE_DIRECTORY = "FavDishImages"
     }
 }

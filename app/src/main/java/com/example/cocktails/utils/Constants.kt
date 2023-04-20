@@ -57,7 +57,7 @@ object Constants {
         list.add("Coupe Glass")
         list.add("Balloon Glass")
         list.add("Martini Glass")
-        return list.sorted() as ArrayList<String>
+        return list
     }
 
     fun alcoholic():ArrayList<String> {

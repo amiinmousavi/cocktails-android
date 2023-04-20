@@ -4,20 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activities.AddUpdateCocktailActivity"
-    tools:ignore="MissingDefaultResource">
+    tools:context=".view.activities.AddUpdateCocktailActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_add_cocktail_activity"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@color/white"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -31,7 +28,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintVertical_chainStyle="spread_inside">
 
         <FrameLayout
             android:id="@+id/fl_select_image"
@@ -46,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/snow_white"
-                android:scaleType="fitXY"/>
+                android:scaleType="fitXY" />
 
             <ImageView
                 android:id="@+id/iv_add_cocktail_image"
@@ -55,6 +53,7 @@
                 android:layout_gravity="end|bottom"
                 android:padding="@dimen/_16sdp"
                 app:srcCompat="@drawable/ic_add_a_photo" />
+
         </FrameLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +70,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/fl_select_image">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:id="@+id/et_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
@@ -91,7 +91,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_title">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/et_category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_category">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/et_alcoholic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_alcoholic">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:id="@+id/et_glass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -167,7 +167,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/til_glass">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
@@ -178,29 +178,73 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_measures"
+            android:id="@+id/til_ingredients"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:hint="@string/lbl_measures"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:hint="@string/lbl_ingredients"
             app:hintTextColor="@color/ceitic_blue"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/til_instructions"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_instructions"
+            app:layout_constraintBottom_toTopOf="@+id/til_measures">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:id="@+id/et_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
                 android:inputType="text"
-                android:textColor="@color/gunmetal"
-                />
+                android:textColor="@color/gunmetal" />
+
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_measures"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:hint="@string/lbl_measures"
+            app:hintTextColor="@color/ceitic_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_ingredients"
+            app:layout_constraintBottom_toTopOf="@+id/btn_add_cocktail">
+
+            <EditText
+                android:id="@+id/et_measures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="text"
+                android:textColor="@color/gunmetal" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btn_add_cocktail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:foreground="?attr/selectableItemBackground"
+            android:gravity="center"
+            android:text="@string/lbl_add_cocktail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/til_measures" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
