@@ -7,7 +7,7 @@ object Constants {
     const val ALCOHOLIC: String = "Alcoholic"
 
     // TODO: deze categoriën, glazen, alcoholic, ... ophalen van API
-    fun categories():ArrayList<String>{
+    fun categories(): ArrayList<String> {
         val list = ArrayList<String>()
         list.add("Ordinary Drink")
         list.add("Cocktail")
@@ -20,10 +20,13 @@ object Constants {
         list.add("Punch/Party Drink")
         list.add("Beer")
         list.add("Soft Drink")
-        return list
+        
+        return sortAlphabetically(
+            list
+        )
     }
 
-    fun glasses():ArrayList<String>{
+    fun glasses(): ArrayList<String> {
         val list = ArrayList<String>()
         list.add("Highball glass")
         list.add("Cocktail glass")
@@ -57,10 +60,14 @@ object Constants {
         list.add("Coupe Glass")
         list.add("Balloon Glass")
         list.add("Martini Glass")
-        return list
+
+        return sortAlphabetically(
+            list
+        )
+
     }
 
-    fun alcoholic():ArrayList<String> {
+    fun alcoholic(): ArrayList<String> {
         val list = ArrayList<String>()
         list.add("Alcoholic")
         list.add("Non-Alcoholic")
@@ -68,4 +75,13 @@ object Constants {
         return list
     }
 
+    fun sortAlphabetically(arrayList: ArrayList<String>): ArrayList<String> {
+        var returnList: ArrayList<String> = arrayListOf()
+        var list = arrayList as MutableList<String>
+        list.sortWith(Comparator { o1: String, o2: String ->
+            o1.compareTo(o2)
+        })
+        returnList = list as ArrayList<String>
+        return returnList
+    }
 }
