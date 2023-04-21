@@ -73,7 +73,10 @@
             <EditText
                 android:id="@+id/et_title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColor="@color/gunmetal"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -170,8 +173,6 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:inputType="text"
                 android:textColor="@color/gunmetal"
                 />
@@ -196,8 +197,6 @@
                 android:id="@+id/et_ingredients"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:inputType="text"
                 android:textColor="@color/gunmetal" />
 
@@ -223,8 +222,6 @@
                 android:id="@+id/et_measures"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
                 android:inputType="text"
                 android:textColor="@color/gunmetal" />
 

@@ -6,10 +6,11 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.cocktails.model.entities.Cocktail
 
-@Database(entities = [Cocktail::class], version = 1)
+@Database(entities = [Cocktail::class], version = 2)
 abstract class CocktailRoomDatabase : RoomDatabase() {
 
     abstract fun cocktailDAO(): CocktailDAO
+
     companion object {
         @Volatile
         private var INSTANCE: CocktailRoomDatabase? = null

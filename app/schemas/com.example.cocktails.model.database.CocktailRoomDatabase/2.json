@@ -1,0 +1,100 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "3dd23ebb9d85327c7ab56896c7464f6e",
+    "entities": [
+      {
+        "tableName": "cocktails_table",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`drink_thumb` TEXT NOT NULL, `image_source` TEXT NOT NULL, `drink` TEXT NOT NULL, `category` TEXT NOT NULL, `alcoholic` TEXT NOT NULL, `glass` TEXT NOT NULL, `instructions` TEXT NOT NULL, `ingredient` TEXT NOT NULL, `measure` TEXT NOT NULL, `date_modified` TEXT NOT NULL, `favorite_cocktail` INTEGER NOT NULL, `id_drink` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "strDrinkThumb",
+            "columnName": "drink_thumb",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imageSource",
+            "columnName": "image_source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "strDrink",
+            "columnName": "drink",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "strCategory",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "strAlcoholic",
+            "columnName": "alcoholic",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "strGlass",
+            "columnName": "glass",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "strInstructions",
+            "columnName": "instructions",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "strIngredient",
+            "columnName": "ingredient",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "strMeasure",
+            "columnName": "measure",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dateModified",
+            "columnName": "date_modified",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "favoriteCocktail",
+            "columnName": "favorite_cocktail",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idDrink",
+            "columnName": "id_drink",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id_drink"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3dd23ebb9d85327c7ab56896c7464f6e')"
+    ]
+  }
+}

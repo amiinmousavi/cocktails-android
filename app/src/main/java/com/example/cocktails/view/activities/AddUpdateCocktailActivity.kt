@@ -38,6 +38,7 @@ import com.example.cocktails.model.entities.Cocktail
 import com.example.cocktails.utils.Constants
 import com.example.cocktails.view.adapters.CustomListItemAdapter
 import com.example.cocktails.viewmodel.CocktailViewModel
+import com.example.cocktails.viewmodel.CocktailViewModelFactory
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -50,21 +51,17 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
-import java.text.SimpleDateFormat
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityAddUpdateCocktailBinding
     private var imagePath: String = ""
-
     private lateinit var customListDialog: Dialog
 
-    private val cocktailViewModel : CocktailViewModel by viewModels{
-        CocktailViewModel.CocktailViewModelFactory((application as CocktailApplication).repository)
+    private val cocktailViewModel: CocktailViewModel by viewModels {
+        CocktailViewModelFactory((application as CocktailApplication).repository)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -74,7 +71,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
         setupActionBar()
 
         binding.ivAddCocktailImage.setOnClickListener(this@AddUpdateCocktailActivity)
-
         binding.etCategory.setOnClickListener(this@AddUpdateCocktailActivity)
         binding.etGlass.setOnClickListener(this@AddUpdateCocktailActivity)
         binding.etAlcoholic.setOnClickListener(this@AddUpdateCocktailActivity)
@@ -96,7 +92,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                     customImageSelectionDialog()
                     return
                 }
-
                 R.id.et_category -> {
                     customItemsListDialog(
                         resources.getString(R.string.title_select_category),
@@ -105,7 +100,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                     )
                     return
                 }
-
                 R.id.et_glass -> {
                     customItemsListDialog(
                         resources.getString(R.string.title_select_glass),
@@ -114,7 +108,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                     )
                     return
                 }
-
                 R.id.et_alcoholic -> {
                     customItemsListDialog(
                         resources.getString(R.string.title_select_alcoholic),
@@ -123,9 +116,7 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                     )
                     return
                 }
-
                 R.id.btn_add_cocktail -> {
-                    // vraag de input-values op
                     val title = binding.etTitle.text.toString().trim { it <= ' ' }
                     val category = binding.etCategory.text.toString().trim { it <= ' ' }
                     val alcoholic = binding.etAlcoholic.text.toString().trim { it <= ' ' }
@@ -135,6 +126,7 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                     val measures = binding.etMeasures.text.toString().trim { it <= ' ' }
 
                     when {
+                        // Geef toast-melding als er waarden ontbreken
                         TextUtils.isEmpty(imagePath) -> {
                             Toast.makeText(
                                 this@AddUpdateCocktailActivity,
@@ -142,7 +134,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
                         TextUtils.isEmpty(title) -> {
                             Toast.makeText(
                                 this@AddUpdateCocktailActivity,
@@ -150,7 +141,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
                         TextUtils.isEmpty(category) -> {
                             Toast.makeText(
                                 this@AddUpdateCocktailActivity,
@@ -158,7 +148,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
                         TextUtils.isEmpty(alcoholic) -> {
                             Toast.makeText(
                                 this@AddUpdateCocktailActivity,
@@ -166,7 +155,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
                         TextUtils.isEmpty(glass) -> {
                             Toast.makeText(
                                 this@AddUpdateCocktailActivity,
@@ -174,7 +162,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
                         TextUtils.isEmpty(instructions) -> {
                             Toast.makeText(
                                 this@AddUpdateCocktailActivity,
@@ -182,7 +169,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
                         TextUtils.isEmpty(ingredients) -> {
                             Toast.makeText(
                                 this@AddUpdateCocktailActivity,
@@ -190,7 +176,6 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
-
                         TextUtils.isEmpty(measures) -> {
                             Toast.makeText(
                                 this@AddUpdateCocktailActivity,
@@ -200,23 +185,17 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                         }
 
                         else -> {
-                            val cocktailDetails: Cocktail = Cocktail(
-                                imagePath,
-                                Constants.COCKTAL_IMAGE_SOURCE_LOCAL,
-                                title,
-                                category,
-                                alcoholic,
-                                glass,
-                                instructions,
-                                ingredients,
-                                measures,
-                                dateModified = "date",
-                                false
+                            val cocktail: Cocktail = Cocktail(
+                                imagePath, Constants.COCKTAIL_IMAGE_SOURCE_LOCAL, title, category,
+                                alcoholic, glass, instructions, ingredients, measures,
+                                dateModified = "date", false
                             )
-
-                            Toast.makeText(this@AddUpdateCocktailActivity,
-                            "You successfully added your favorite dish details.",
-                            Toast.LENGTH_SHORT).show()
+                            cocktailViewModel.insert(cocktail)
+                            Toast.makeText(
+                                this@AddUpdateCocktailActivity,
+                                "You successfully added your favorite cocktail details.",
+                                Toast.LENGTH_SHORT
+                            ).show()
                             Log.e("Insertion", "Success")
                             finish()
                         }
@@ -306,9 +285,7 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                         )
                     )
                 }
-            }
-
-            else if (resultCode == Activity.RESULT_CANCELED) {
+            } else if (resultCode == Activity.RESULT_CANCELED) {
                 Log.e("Cancelled", "The selection of the image got cancelled by user.")
             }
         }
