@@ -6,6 +6,9 @@ object Constants {
     const val GLASS: String = "Glass"
     const val ALCOHOLIC: String = "Alcoholic"
 
+    const val COCKTAL_IMAGE_SOURCE_LOCAL : String = "Local"
+    const val COCKTAIL_IMAGE_SOURCE_ONLINE : String = "Online"
+
     // TODO: deze categoriën, glazen, alcoholic, ... ophalen van API
     fun categories(): ArrayList<String> {
         val list = ArrayList<String>()

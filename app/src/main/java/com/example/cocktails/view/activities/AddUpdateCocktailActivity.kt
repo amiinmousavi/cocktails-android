@@ -19,6 +19,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,11 +30,14 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.cocktails.R
+import com.example.cocktails.application.CocktailApplication
 import com.example.cocktails.databinding.ActivityAddUpdateCocktailBinding
 import com.example.cocktails.databinding.DialogCustomImageSelectionBinding
 import com.example.cocktails.databinding.DialogCustomListBinding
+import com.example.cocktails.model.entities.Cocktail
 import com.example.cocktails.utils.Constants
 import com.example.cocktails.view.adapters.CustomListItemAdapter
+import com.example.cocktails.viewmodel.CocktailViewModel
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -46,6 +50,10 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
+import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
@@ -54,6 +62,9 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var customListDialog: Dialog
 
+    private val cocktailViewModel : CocktailViewModel by viewModels{
+        CocktailViewModel.CocktailViewModelFactory((application as CocktailApplication).repository)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -189,11 +200,25 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
                         }
 
                         else -> {
-                            Toast.makeText(
-                                this@AddUpdateCocktailActivity,
-                                "All entries are valid.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            val cocktailDetails: Cocktail = Cocktail(
+                                imagePath,
+                                Constants.COCKTAL_IMAGE_SOURCE_LOCAL,
+                                title,
+                                category,
+                                alcoholic,
+                                glass,
+                                instructions,
+                                ingredients,
+                                measures,
+                                dateModified = "date",
+                                false
+                            )
+
+                            Toast.makeText(this@AddUpdateCocktailActivity,
+                            "You successfully added your favorite dish details.",
+                            Toast.LENGTH_SHORT).show()
+                            Log.e("Insertion", "Success")
+                            finish()
                         }
 
                     }

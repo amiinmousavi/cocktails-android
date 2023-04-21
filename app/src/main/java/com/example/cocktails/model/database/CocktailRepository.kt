@@ -6,7 +6,7 @@ import com.example.cocktails.model.entities.Cocktail
 class CocktailRepository(private val cocktailDAO: CocktailDAO) {
 
     @WorkerThread
-    suspend fun insertFavoriteCocktail(cocktail: Cocktail){
-        cocktailDAO.insertFavoriteCocktailDetails(cocktail)
+    suspend fun insertCocktailData(cocktail: Cocktail){
+        cocktailDAO.insertCocktailDetails(cocktail)
     }
 }
