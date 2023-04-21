@@ -8,5 +8,5 @@ import com.example.cocktails.model.entities.Cocktail
 interface CocktailDAO {
 
     @Insert
-    suspend fun insertCocktailDetails(cocktail: Cocktail)
+    fun insertCocktailDetails(cocktail: Cocktail)
 }

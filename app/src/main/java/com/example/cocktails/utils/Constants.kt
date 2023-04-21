@@ -79,12 +79,10 @@ object Constants {
     }
 
     fun sortAlphabetically(arrayList: ArrayList<String>): ArrayList<String> {
-        var returnList: ArrayList<String> = arrayListOf()
         var list = arrayList as MutableList<String>
         list.sortWith(Comparator { o1: String, o2: String ->
             o1.compareTo(o2)
         })
-        returnList = list as ArrayList<String>
-        return returnList
+        return list as ArrayList<String>
     }
 }
