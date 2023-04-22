@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_all_cocktails">
 
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_all_cocktails"
         android:name="com.example.cocktails.view.fragments.AllCocktailsFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_all_cocktails"
         tools:layout="@layout/fragment_all_cocktails" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.cocktails.view.fragments.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_favorite_cocktails"
+        android:name="com.example.cocktails.view.fragments.FavoriteCocktailsFragment"
+        android:label="@string/title_favorite_cocktails"
+        tools:layout="@layout/fragment_favorite_cocktails" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.cocktails.view.fragments.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_explore_cocktails"
+        android:name="com.example.cocktails.view.fragments.ExploreCocktailsFragment"
+        android:label="@string/title_explore_cocktails"
+        tools:layout="@layout/fragment_explore_cocktails" />
 </navigation>

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cocktails.databinding.FragmentDashboardBinding
 import com.example.cocktails.viewmodel.DashboardViewModel
 
-class DashboardFragment : Fragment() {
+class FavoriteCocktailsFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
 

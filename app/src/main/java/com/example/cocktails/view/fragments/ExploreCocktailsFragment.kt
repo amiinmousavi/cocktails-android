@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.cocktails.databinding.FragmentNotificationsBinding
 import com.example.cocktails.viewmodel.NotificationsViewModel
 
-class NotificationsFragment : Fragment() {
+class ExploreCocktailsFragment : Fragment() {
 
     private var _binding: FragmentNotificationsBinding? = null
 
