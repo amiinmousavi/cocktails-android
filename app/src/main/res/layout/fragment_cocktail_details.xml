@@ -37,8 +37,8 @@
             android:id="@+id/iv_cocktail_image"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
-            android:background="@color/dish_image_background"
-            android:contentDescription="@string/image_contentDescription"
+            android:background="@color/snow_white"
+            android:contentDescription="@string/image_content_description"
             android:scaleType="fitXY" />
 
             <LinearLayout
@@ -53,7 +53,7 @@
                     android:id="@+id/iv_favorite_cocktail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@string/image_contentDescription"
+                    android:contentDescription="@string/image_content_description"
                     android:src="@drawable/ic_favorite_unselected" />
             </LinearLayout>
         </FrameLayout>
@@ -138,7 +138,7 @@
             android:id="@+id/tv_instruction_label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_ingredients"
+            android:layout_below="@id/tv_ingredient"
             android:layout_margin="@dimen/_10sdp"
             android:text="@string/lbl_instructions"
             android:textSize="@dimen/_16sdp"
