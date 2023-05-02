@@ -1,13 +1,24 @@
 package com.example.cocktails.utils
 
 object Constants {
-
+    // String
     const val CATEGORY: String = "Category"
     const val GLASS: String = "Glass"
     const val ALCOHOLIC: String = "Alcoholic"
 
+    // Image Source
     const val COCKTAIL_IMAGE_SOURCE_LOCAL : String = "Local"
     const val COCKTAIL_IMAGE_SOURCE_ONLINE : String = "Online"
+
+    // Cocktails Api
+    const val API_BASE_URL: String = "https://www.thecocktaildb.com/api/"
+    const val API_ENDPOINT_RANDOM_COCKTAIL: String = "json/v1/1/random.php"
+
+    // Filter Options
+    const val API_ENDPOINT_CATEGORIES: String = "json/v1/1/list.php?c=list"
+    const val API_ENDPOINT_GLASSES: String = "json/v1/1/list.php?g=list"
+    const val API_ENDPOINT_INGREDIENTS: String = "json/v1/1/list.php?i=list"
+    const val API_ENDPOINT_ALCOHOLIC: String = "json/v1/1/list.php?a=list"
 
     // TODO: deze categoriën, glazen, alcoholic, ... ophalen van API
     fun categories(): ArrayList<String> {
