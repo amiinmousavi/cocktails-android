@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cocktails.databinding.FragmentFavoriteCocktailsBinding
-import com.example.cocktails.viewmodel.DashboardViewModel
+import com.example.cocktails.viewmodel.FavoriteCocktailsViewModel
 
 class FavoriteCocktailsFragment : Fragment() {
 
@@ -24,7 +24,7 @@ class FavoriteCocktailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val dashboardViewModel =
-            ViewModelProvider(this).get(DashboardViewModel::class.java)
+            ViewModelProvider(this).get(FavoriteCocktailsViewModel::class.java)
 
         _binding = FragmentFavoriteCocktailsBinding.inflate(inflater, container, false)
         val root: View = binding.root

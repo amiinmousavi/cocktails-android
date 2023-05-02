@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_all_cocktails"
+        android:id="@+id/all_cocktails"
         android:icon="@drawable/ic_all"
         android:title="@string/title_all_cocktails" />
 
     <item
-        android:id="@+id/navigation_favorite_cocktails"
+        android:id="@+id/favorite_cocktails"
         android:icon="@drawable/ic_favorite"
         android:title="@string/title_favorite_cocktails" />
 
     <item
-        android:id="@+id/navigation_explore_cocktails"
+        android:id="@+id/explore_cocktails"
         android:icon="@drawable/ic_explore"
         android:title="@string/title_explore_cocktails" />
 

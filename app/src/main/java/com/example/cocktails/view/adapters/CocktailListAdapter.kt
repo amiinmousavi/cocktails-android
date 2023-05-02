@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.cocktails.databinding.ItemCocktailListBinding
 import com.example.cocktails.model.entities.Cocktail
+import com.example.cocktails.view.fragments.AllCocktailsFragment
 
 class CocktailListAdapter(private val fragment: Fragment) :
     RecyclerView.Adapter<CocktailListAdapter.ViewHolder>() {
@@ -28,8 +29,13 @@ class CocktailListAdapter(private val fragment: Fragment) :
         Glide.with(fragment)
             .load(cocktail.strDrinkThumb)
             .into(holder.ivCocktailImage)
-
         holder.tvTitle.text = cocktail.strDrink
+
+        holder.itemView.setOnClickListener{
+            if(fragment is AllCocktailsFragment) {
+                fragment.cocktailDetails()
+            }
+        }
     }
 
     override fun getItemCount(): Int {

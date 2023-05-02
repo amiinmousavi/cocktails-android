@@ -12,6 +12,7 @@ class CocktailViewModel (private val repository: CocktailRepository) : ViewModel
     }
 
     val allCocktails: LiveData<List<Cocktail>> = repository.allCocktails.asLiveData()
+
 }
 
 class CocktailViewModelFactory(private val repository: CocktailRepository) :
