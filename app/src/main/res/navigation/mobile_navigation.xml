@@ -27,11 +27,18 @@
         android:name="com.example.cocktails.view.fragments.ExploreCocktailsFragment"
         android:label="@string/title_explore_cocktails"
         tools:layout="@layout/fragment_explore_cocktails" />
+
     <fragment
         android:id="@+id/cocktail_details"
         android:name="com.example.cocktails.view.fragments.CocktailDetailsFragment"
         android:label="@string/title_cocktail_details"
         tools:layout="@layout/fragment_cocktail_details"
-        />
+        >
+        <argument
+            android:name="cocktailData"
+            app:argType="com.example.cocktails.model.entities.Cocktail"
+            />
+
+    </fragment>
 
 </navigation>

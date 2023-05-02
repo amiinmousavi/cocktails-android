@@ -33,7 +33,7 @@ class CocktailListAdapter(private val fragment: Fragment) :
 
         holder.itemView.setOnClickListener{
             if(fragment is AllCocktailsFragment) {
-                fragment.cocktailDetails()
+                fragment.cocktailDetails(cocktail)
             }
         }
     }

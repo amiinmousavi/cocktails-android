@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktails.R
 import com.example.cocktails.application.CocktailApplication
 import com.example.cocktails.databinding.FragmentAllCocktailsBinding
+import com.example.cocktails.model.entities.Cocktail
 import com.example.cocktails.view.activities.AddUpdateCocktailActivity
 import com.example.cocktails.view.activities.MainActivity
 import com.example.cocktails.view.adapters.CocktailListAdapter
@@ -62,8 +63,10 @@ class AllCocktailsFragment : Fragment() {
         }
     }
 
-    fun cocktailDetails() {
-        findNavController().navigate(AllCocktailsFragmentDirections.actionAllCocktailsToCocktailDetails())
+    fun cocktailDetails(cocktail: Cocktail) {
+        findNavController().navigate(AllCocktailsFragmentDirections.actionAllCocktailsToCocktailDetails(
+            cocktail
+        ))
 
         if(requireActivity() is MainActivity) {
             (activity as MainActivity?)?.hideBottomNavigationView()

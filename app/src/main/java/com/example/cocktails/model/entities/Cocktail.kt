@@ -1,9 +1,12 @@
 package com.example.cocktails.model.entities
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @Entity(tableName = "cocktails_table")
 data class Cocktail(
     @ColumnInfo(name = "drink_thumb") val strDrinkThumb: String,
@@ -19,4 +22,4 @@ data class Cocktail(
 
     @ColumnInfo(name = "favorite_cocktail") var favoriteCocktail: Boolean = false,
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id_drink") val idDrink: Int = 0,
-)
+):Parcelable
