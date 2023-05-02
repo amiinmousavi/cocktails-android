@@ -102,10 +102,21 @@
             tools:text="Category" />
 
         <TextView
-            android:id="@+id/tv_ingredients_label"
+            android:id="@+id/tv_glass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_category"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:textColor="@color/gunmetal"
+            android:textSize="@dimen/_16sdp"
+            tools:text="Glass" />
+
+        <TextView
+            android:id="@+id/tv_ingredients_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_glass"
             android:layout_margin="@dimen/_10sdp"
             android:text="@string/lbl_ingredients"
             android:textSize="@dimen/_16sdp"
@@ -113,7 +124,7 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_ingredients"
+            android:id="@+id/tv_ingredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/gunmetal"
