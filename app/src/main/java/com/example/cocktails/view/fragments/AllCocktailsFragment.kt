@@ -15,13 +15,14 @@ import com.example.cocktails.model.entities.Cocktail
 import com.example.cocktails.view.activities.AddUpdateCocktailActivity
 import com.example.cocktails.view.activities.MainActivity
 import com.example.cocktails.view.adapters.CocktailListAdapter
-import com.example.cocktails.viewmodel.CocktailViewModel
-import com.example.cocktails.viewmodel.CocktailViewModelFactory
+import com.example.cocktails.viewmodel.AllCocktailsViewModel
+import com.example.cocktails.viewmodel.AllCocktailsViewModelFactory
+
 
 class AllCocktailsFragment : Fragment() {
     private lateinit var binding: FragmentAllCocktailsBinding
-    private val cocktailViewModel: CocktailViewModel by viewModels {
-        CocktailViewModelFactory(
+    private val cocktailViewModel: AllCocktailsViewModel by viewModels {
+        AllCocktailsViewModelFactory(
             (requireActivity().application as
                     CocktailApplication).repository
         )
@@ -38,15 +39,10 @@ class AllCocktailsFragment : Fragment() {
         )
         return binding.root
     }
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -77,7 +73,6 @@ class AllCocktailsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
         if(requireActivity() is MainActivity) {
             (activity as MainActivity?)?.showBottomNavigationView()
         }

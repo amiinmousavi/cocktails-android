@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.cocktails.viewmodel.CocktailViewModel" />
+            type="com.example.cocktails.viewmodel.AllCocktailsViewModel" />
         <import type="android.view.View"/>
     </data>
 

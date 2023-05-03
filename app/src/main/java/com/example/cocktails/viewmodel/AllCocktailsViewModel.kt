@@ -1,16 +1,16 @@
 package com.example.cocktails.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import androidx.lifecycle.viewmodel.CreationExtras
+import com.example.cocktails.model.database.CocktailRepository
+import com.example.cocktails.model.entities.Cocktail
+import kotlinx.coroutines.launch
 
-class AllCocktailsViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is AllCocktails Fragment"
+class AllCocktailsViewModel (private val repository: CocktailRepository) : ViewModel() {
+    fun insert(cocktail: Cocktail) = viewModelScope.launch {
+        repository.insertCocktail(cocktail)
     }
-
-    val text: LiveData<String> = _text
-
-    init {}
-
+    val allCocktails: LiveData<List<Cocktail>> = repository.allCocktails.asLiveData()
 }
+
+

@@ -37,8 +37,8 @@ import com.example.cocktails.databinding.DialogCustomListBinding
 import com.example.cocktails.model.entities.Cocktail
 import com.example.cocktails.utils.Constants
 import com.example.cocktails.view.adapters.CustomListItemAdapter
-import com.example.cocktails.viewmodel.CocktailViewModel
-import com.example.cocktails.viewmodel.CocktailViewModelFactory
+import com.example.cocktails.viewmodel.AllCocktailsViewModel
+import com.example.cocktails.viewmodel.AllCocktailsViewModelFactory
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -58,8 +58,8 @@ class AddUpdateCocktailActivity : AppCompatActivity(), View.OnClickListener {
     private var imagePath: String = ""
     private lateinit var customListDialog: Dialog
 
-    private val cocktailViewModel: CocktailViewModel by viewModels {
-        CocktailViewModelFactory((application as CocktailApplication).repository)
+    private val cocktailViewModel: AllCocktailsViewModel by viewModels {
+        AllCocktailsViewModelFactory((application as CocktailApplication).repository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
