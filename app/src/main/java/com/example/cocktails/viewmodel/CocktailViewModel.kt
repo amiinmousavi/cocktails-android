@@ -10,9 +10,7 @@ class CocktailViewModel (private val repository: CocktailRepository) : ViewModel
     fun insert(cocktail: Cocktail) = viewModelScope.launch {
         repository.insertCocktail(cocktail)
     }
-
     val allCocktails: LiveData<List<Cocktail>> = repository.allCocktails.asLiveData()
-
 }
 
 class CocktailViewModelFactory(private val repository: CocktailRepository) :

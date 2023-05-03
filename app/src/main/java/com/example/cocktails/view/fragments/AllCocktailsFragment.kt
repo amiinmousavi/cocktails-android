@@ -20,26 +20,26 @@ import com.example.cocktails.viewmodel.CocktailViewModelFactory
 
 class AllCocktailsFragment : Fragment() {
     private lateinit var binding: FragmentAllCocktailsBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-//        binding = FragmentAllCocktailsBinding.inflate(inflater, container, false)
-//        return binding.root
-        binding = DataBindingUtil.inflate<FragmentAllCocktailsBinding>(
-            inflater, R.layout.fragment_all_cocktails, container, false
-        )
-        return binding.root
-    }
-
     private val cocktailViewModel: CocktailViewModel by viewModels {
         CocktailViewModelFactory(
             (requireActivity().application as
                     CocktailApplication).repository
         )
     }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        binding = DataBindingUtil.inflate<FragmentAllCocktailsBinding>(
+            inflater, R.layout.fragment_all_cocktails, container, false
+        )
+        return binding.root
+    }
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,18 +52,13 @@ class AllCocktailsFragment : Fragment() {
 
         binding.rvCocktailsList.layoutManager = GridLayoutManager(requireActivity(), 2)
         val cocktailListAdapter = CocktailListAdapter(this@AllCocktailsFragment)
-
         binding.rvCocktailsList.adapter = cocktailListAdapter
+
         cocktailViewModel.allCocktails.observe(viewLifecycleOwner) { cocktails ->
             cocktails.let {
                 for (item in it) {
                     if(it.isNotEmpty()){
-                        binding.rvCocktailsList.visibility = View.VISIBLE
-                        binding.tvNoCocktailsAddedYet.visibility = View.GONE
                         cocktailListAdapter.cocktailsList(it)
-                    }else{
-                        binding.rvCocktailsList.visibility = View.GONE
-                        binding.tvNoCocktailsAddedYet.visibility = View.VISIBLE
                     }
                 }
             }
