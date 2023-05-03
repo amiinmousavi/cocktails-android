@@ -47,6 +47,8 @@ android {
     buildFeatures {
         viewBinding true
     }
+
+
 }
 
 dependencies {
@@ -58,29 +60,30 @@ dependencies {
 
     /* Room
     Docs: https://developer.android.com/training/data-storage/room */
-    def room_version = '2.4.3'
+
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
     // Glide
-    implementation "com.github.bumptech.glide:glide:4.11.0"
-    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
     /* Dexter runtime permissions
     Docs: https://github.com/Karumi/Dexter */
     implementation 'com.karumi:dexter:6.2.2'
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation "com.squareup.retrofit2:converter-scalars:2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit2_version"
 
     // Lifecycle components
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
 
     // Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
 
     // Testing
     testImplementation 'junit:junit:4.13.2'

@@ -1,6 +1,11 @@
 package com.example.cocktails.view.activities
 
+import android.content.Context
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -52,4 +57,5 @@ class MainActivity : AppCompatActivity() {
         binding.navView.clearAnimation()
         binding.navView.animate().translationY(0f).duration = 300
     }
+
 }

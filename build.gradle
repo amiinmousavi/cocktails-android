@@ -9,6 +9,15 @@ buildscript {
         def nav_version = "2.5.3"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
+
+    ext {
+        room_version = '2.4.3'
+        lifecycle_version = '2.5.1'
+        glide_version = '4.11.0'
+        retrofit2_version = '2.9.0'
+        navigation_version = '2.5.3'
+
+    }
 }
 
 plugins {
