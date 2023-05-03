@@ -3,6 +3,7 @@ package com.example.cocktails.view.fragments
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,20 @@ import com.example.cocktails.viewmodel.CocktailViewModelFactory
 
 class AllCocktailsFragment : Fragment() {
     private lateinit var binding: FragmentAllCocktailsBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+//        binding = FragmentAllCocktailsBinding.inflate(inflater, container, false)
+//        return binding.root
+        binding = DataBindingUtil.inflate<FragmentAllCocktailsBinding>(
+            inflater, R.layout.fragment_all_cocktails, container, false
+        )
+        return binding.root
+    }
+
     private val cocktailViewModel: CocktailViewModel by viewModels {
         CocktailViewModelFactory(
             (requireActivity().application as
@@ -31,14 +46,6 @@ class AllCocktailsFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentAllCocktailsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
