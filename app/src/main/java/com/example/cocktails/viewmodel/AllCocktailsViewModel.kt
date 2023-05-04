@@ -12,9 +12,12 @@ class AllCocktailsViewModel (private val repository: CocktailRepository) : ViewM
     fun insert(cocktail: Cocktail) = viewModelScope.launch {
         repository.insertCocktail(cocktail)
     }
+
+    // backing property allows you to return something from a getter other than the exact object.
     private var _allCocktails: LiveData<List<Cocktail>> = repository.allCocktails.asLiveData()
     val allCocktails: LiveData<List<Cocktail>>
         get() = _allCocktails
 }
+
 
 
