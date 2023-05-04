@@ -18,15 +18,16 @@ import com.example.cocktails.view.adapters.CocktailListAdapter
 import com.example.cocktails.viewmodel.AllCocktailsViewModel
 import com.example.cocktails.viewmodel.AllCocktailsViewModelFactory
 
-
+// activities, fragments: responsible for drawing views and data to the screen
 class AllCocktailsFragment : Fragment() {
-    private lateinit var binding: FragmentAllCocktailsBinding
-    private val cocktailViewModel: AllCocktailsViewModel by viewModels {
+    // property delegate (by viewModels) retains value through conf changes
+    private val viewModel: AllCocktailsViewModel by viewModels {
         AllCocktailsViewModelFactory(
             (requireActivity().application as
                     CocktailApplication).repository
         )
     }
+    private lateinit var binding: FragmentAllCocktailsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,7 +51,7 @@ class AllCocktailsFragment : Fragment() {
         val cocktailListAdapter = CocktailListAdapter(this@AllCocktailsFragment)
         binding.rvCocktailsList.adapter = cocktailListAdapter
 
-        cocktailViewModel.allCocktails.observe(viewLifecycleOwner) { cocktails ->
+        viewModel.allCocktails.observe(viewLifecycleOwner) { cocktails ->
             cocktails.let {
                 for (item in it) {
                     if(it.isNotEmpty()){
