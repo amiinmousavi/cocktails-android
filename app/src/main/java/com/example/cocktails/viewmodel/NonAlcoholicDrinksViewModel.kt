@@ -1,4 +1,7 @@
 package com.example.cocktails.viewmodel
 
-class NonAlcoholicDrinksViewModel {
+import androidx.lifecycle.ViewModel
+
+class NonAlcoholicDrinksViewModel : ViewModel() {
+
 }

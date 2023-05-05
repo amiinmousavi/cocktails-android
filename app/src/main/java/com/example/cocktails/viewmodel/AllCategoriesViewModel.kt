@@ -1,4 +1,6 @@
 package com.example.cocktails.viewmodel
 
-class AllCategoriesViewModel {
+import androidx.lifecycle.ViewModel
+
+class AllCategoriesViewModel : ViewModel()  {
 }

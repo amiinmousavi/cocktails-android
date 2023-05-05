@@ -11,11 +11,7 @@ import com.example.cocktails.databinding.FragmentFavoriteCocktailsBinding
 import com.example.cocktails.viewmodel.FavoriteCocktailsViewModel
 
 class FavoriteCocktailsFragment : Fragment() {
-
     private var _binding: FragmentFavoriteCocktailsBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
