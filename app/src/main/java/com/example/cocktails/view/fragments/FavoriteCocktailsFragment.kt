@@ -14,22 +14,22 @@ class FavoriteCocktailsFragment : Fragment() {
     private var _binding: FragmentFavoriteCocktailsBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: FavoriteCocktailsViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
-            ViewModelProvider(this).get(FavoriteCocktailsViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(FavoriteCocktailsViewModel::class.java)
 
         _binding = FragmentFavoriteCocktailsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
         val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
+        viewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
-        return root
+
+        return binding.root
     }
 
     override fun onDestroyView() {

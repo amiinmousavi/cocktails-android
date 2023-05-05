@@ -11,9 +11,10 @@ import com.example.cocktails.databinding.FragmentExploreCocktailsBinding
 import com.example.cocktails.viewmodel.ExploreCocktailsViewModel
 
 class ExploreCocktailsFragment : Fragment() {
-    private lateinit var viewModel: ExploreCocktailsViewModel
     private var _binding: FragmentExploreCocktailsBinding? = null
-    private val binding get() = _binding!!
+    val binding get() = _binding!!
+
+    private lateinit var viewModel: ExploreCocktailsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
