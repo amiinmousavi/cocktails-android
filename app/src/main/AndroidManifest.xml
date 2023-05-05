@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.cocktails">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".application.CocktailApplication"
         android:allowBackup="true"
@@ -18,11 +19,13 @@
         android:theme="@style/Theme.Cocktails"
         tools:targetApi="31">
         <activity
+            android:name=".ExploreCocktailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.activities.AddUpdateCocktailActivity"
+            android:configChanges="orientation"
             android:label="@string/title_add_cocktail"
-            android:theme="@style/Theme.Cocktails.NoActionBar"
-            android:configChanges="orientation"/>
-
+            android:theme="@style/Theme.Cocktails.NoActionBar" />
         <activity
             android:name=".view.activities.MainActivity"
             android:exported="true"

@@ -42,6 +42,11 @@
         <entry key="..\:/Users/Gebruiker/Documents/cocktailsandorid/cocktails-android/app/src/main/res/layout/item_cocktail_list.xml" value="0.31302083333333336" />
         <entry key="..\:/Users/Gebruiker/Documents/cocktailsandorid/cocktails-android/app/src/main/res/layout/item_custom_list.xml" value="0.31302083333333336" />
         <entry key="..\:/Users/Gebruiker/Documents/cocktailsandorid/cocktails-android/app/src/main/res/menu/bottom_nav_menu.xml" value="0.31302083333333336" />
+        <entry key="..\:/hhh/cocktails-android/app/src/main/res/layout/activity_add_update_cocktail.xml" value="0.3109375" />
+        <entry key="..\:/hhh/cocktails-android/app/src/main/res/layout/activity_explore_cocktails.xml" value="0.3109375" />
+        <entry key="..\:/hhh/cocktails-android/app/src/main/res/layout/activity_main.xml" value="0.3109375" />
+        <entry key="..\:/hhh/cocktails-android/app/src/main/res/layout/fragment_all_cocktails.xml" value="0.3109375" />
+        <entry key="..\:/hhh/cocktails-android/app/src/main/res/layout/fragment_explore_cocktails.xml" value="0.22" />
       </map>
     </option>
   </component>
