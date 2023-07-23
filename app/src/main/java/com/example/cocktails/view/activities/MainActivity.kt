@@ -11,6 +11,8 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.cocktails.R
 import com.example.cocktails.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.navView.setupWithNavController(navController)
+
     }
 
     // Makes sure that the user can navigate back from details page
@@ -52,4 +55,8 @@ class MainActivity : AppCompatActivity() {
         binding.navView.clearAnimation()
         binding.navView.animate().translationY(0f).duration = 300
     }
+}
+
+private fun <T> Call<T>.enqueue(callback: Callback<Any>) {
+
 }

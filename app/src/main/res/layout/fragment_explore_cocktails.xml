@@ -6,7 +6,8 @@
     <data>
     <variable
         name="viewModel"
-        type="com.example.cocktails.viewmodel.ExploreCocktailsViewModel" />
+        type="com.example.cocktails.viewmodel.ExploreCocktailsViewModel"
+        />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +20,7 @@
             android:id="@+id/non_alcoholic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.btnNavigateToNonAlcoholicDrinksClicked()}"
             android:text="Non-Alcoholic drinks"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +67,6 @@
             android:text="Drinks with Rum"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ingr_tequila" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

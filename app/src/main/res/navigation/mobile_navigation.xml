@@ -26,7 +26,11 @@
         android:id="@+id/explore_cocktails"
         android:name="com.example.cocktails.view.fragments.ExploreCocktailsFragment"
         android:label="@string/title_explore_cocktails"
-        tools:layout="@layout/fragment_explore_cocktails" />
+        tools:layout="@layout/fragment_explore_cocktails" >
+        <action
+            android:id="@+id/action_explore_cocktails_to_nonAlcoholicDrinksFragment"
+            app:destination="@id/nonAlcoholicDrinksFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/cocktail_details"
@@ -38,7 +42,9 @@
             android:name="cocktailData"
             app:argType="com.example.cocktails.model.entities.Cocktail"
             />
-
     </fragment>
-
+    <fragment
+        android:id="@+id/nonAlcoholicDrinksFragment"
+        android:name="com.example.cocktails.view.fragments.NonAlcoholicDrinksFragment"
+        android:label="NonAlcoholicDrinksFragment" />
 </navigation>

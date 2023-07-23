@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Cocktails"
         tools:targetApi="31">
         <activity
-            android:name=".ExploreCocktailsActivity"
+            android:name=".view.activities.ExploreCocktailsActivity"
             android:exported="false" />
         <activity
             android:name=".view.activities.AddUpdateCocktailActivity"

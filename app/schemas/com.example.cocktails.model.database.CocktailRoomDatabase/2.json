@@ -75,7 +75,7 @@
             "notNull": true
           },
           {
-            "fieldPath": "idDrink",
+            "fieldPath": "id",
             "columnName": "id_drink",
             "affinity": "INTEGER",
             "notNull": true

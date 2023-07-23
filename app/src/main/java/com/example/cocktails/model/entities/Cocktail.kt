@@ -20,5 +20,5 @@ data class Cocktail(
     @ColumnInfo(name = "measure") val strMeasure: String,
     @ColumnInfo(name = "date_modified") val dateModified: String,
     @ColumnInfo(name = "favorite_cocktail") var favoriteCocktail: Boolean = false,
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id_drink") val idDrink: Int = 0,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id_drink") val id: Int = 0,
 ):Parcelable

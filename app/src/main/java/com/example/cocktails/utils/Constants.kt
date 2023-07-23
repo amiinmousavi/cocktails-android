@@ -11,14 +11,15 @@ object Constants {
     const val COCKTAIL_IMAGE_SOURCE_ONLINE : String = "Online"
 
     // Cocktails Api
-    const val API_BASE_URL: String = "https://www.thecocktaildb.com/api/"
-    const val API_ENDPOINT_RANDOM_COCKTAIL: String = "json/v1/1/random.php"
+    const val API_BASE_URL: String = "https://www.thecocktaildb.com/api/json/v1/1/"
+    const val API_ENDPOINT_RANDOM_COCKTAIL: String = "random.php"
+    const val API_ENDPOINT_NON_ALCOHOLIC: String = "filter.php?a=Non_Alcoholic"
 
     // Filter Options
-    const val API_ENDPOINT_CATEGORIES: String = "json/v1/1/list.php?c=list"
-    const val API_ENDPOINT_GLASSES: String = "json/v1/1/list.php?g=list"
-    const val API_ENDPOINT_INGREDIENTS: String = "json/v1/1/list.php?i=list"
-    const val API_ENDPOINT_ALCOHOLIC: String = "json/v1/1/list.php?a=list"
+    const val API_ENDPOINT_CATEGORIES: String = "list.php?c=list"
+    const val API_ENDPOINT_GLASSES: String = "list.php?g=list"
+    const val API_ENDPOINT_INGREDIENTS: String = "list.php?i=list"
+    const val API_ENDPOINT_ALCOHOLIC: String = "list.php?a=list"
 
     // TODO: deze categoriën, glazen, alcoholic, ... ophalen van API
     fun categories(): ArrayList<String> {
