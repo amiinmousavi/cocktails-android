@@ -32,6 +32,7 @@ class CocktailDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val args: CocktailDetailsFragmentArgs by navArgs()
 
         args.let{

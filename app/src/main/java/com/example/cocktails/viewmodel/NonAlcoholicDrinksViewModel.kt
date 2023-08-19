@@ -20,7 +20,6 @@ import java.io.IOException
 
 class NonAlcoholicDrinksViewModel : ViewModel() {
     private val cocktailsApiService = CocktailsApiService()
-
     private val compositeDisposable = CompositeDisposable()
 
     val _loadNonAlcoholicDrinks = MutableLiveData<Boolean>()

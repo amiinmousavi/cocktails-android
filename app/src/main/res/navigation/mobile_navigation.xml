@@ -29,7 +29,12 @@
         tools:layout="@layout/fragment_explore_cocktails" >
         <action
             android:id="@+id/action_explore_cocktails_to_nonAlcoholicDrinksFragment"
-            app:destination="@id/nonAlcoholicDrinksFragment" />
+            app:destination="@id/nonAlcoholicDrinksFragment"
+            app:popUpTo="@id/explore_cocktails" />
+        <action
+            android:id="@+id/action_explore_cocktails_to_randomCocktailFragment"
+            app:destination="@id/randomCocktailFragment"
+            app:popUpTo="@id/explore_cocktails" />
     </fragment>
 
     <fragment
@@ -47,4 +52,8 @@
         android:id="@+id/nonAlcoholicDrinksFragment"
         android:name="com.example.cocktails.view.fragments.NonAlcoholicDrinksFragment"
         android:label="NonAlcoholicDrinksFragment" />
+    <fragment
+        android:id="@+id/randomCocktailFragment"
+        android:name="com.example.cocktails.view.fragments.RandomCocktailFragment"
+        android:label="RandomCocktailFragment" />
 </navigation>

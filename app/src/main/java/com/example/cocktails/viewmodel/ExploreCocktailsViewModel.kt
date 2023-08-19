@@ -13,18 +13,31 @@ class ExploreCocktailsViewModel : ViewModel() {
     val navigateToNonAlcoholicDrinks : LiveData<Boolean>
         get() {return _navigateToNonAlcoholicDrinks}
 
+    private val _navigateToRandomCocktail = MutableLiveData<Boolean>()
+    val navigateToRandomCocktail: LiveData<Boolean>
+        get() {return _navigateToRandomCocktail}
+
     init {
         _navigateToNonAlcoholicDrinks.value = false
+        _navigateToRandomCocktail.value = false
     }
 
-    // navigation
+    // navigation {TO NON ALCOHOLIC DRINKS}
     fun btnNavigateToNonAlcoholicDrinksClicked() {
-        Log.i("clickNonAlcoholic", "exporecocktailsviewmodel")
         _navigateToNonAlcoholicDrinks.value = true
     }
 
     fun btnNavigateToNonAlcoholicDrinksFinished() {
         _navigateToNonAlcoholicDrinks.value = false
+    }
+
+    // navigation {TO RANDOM COCKTAIL}
+    fun btnNavigateToRandomCocktailClicked() {
+        _navigateToRandomCocktail.value = true
+    }
+
+    fun btnNavigateToRandomCocktailFinished() {
+        _navigateToRandomCocktail.value = false
     }
 
 }

@@ -26,47 +26,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/categories"
+            android:id="@+id/random_cocktail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All Categories"
+            android:onClick="@{() -> viewModel.btnNavigateToRandomCocktailClicked()}"
+            android:text="Random Cocktail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/non_alcoholic" />
-
-        <Button
-            android:id="@+id/ingr_gin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="212dp"
-            android:text="Drinks with Gin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/categories"
-            />
-
-        <Button
-            android:id="@+id/ingr_vodka"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Drinks with Vodka"
-            app:layout_constraintTop_toBottomOf="@id/ingr_gin"
-            app:layout_constraintStart_toStartOf="parent"/>
-
-        <Button
-            android:id="@+id/ingr_tequila"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="212dp"
-            android:text="Drinks with Tequila"
-            app:layout_constraintTop_toBottomOf="@+id/ingr_vodka"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <Button
-            android:id="@+id/ingr_rum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Drinks with Rum"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ingr_tequila" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

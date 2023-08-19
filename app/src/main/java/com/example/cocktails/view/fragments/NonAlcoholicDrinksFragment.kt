@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cocktails.R
 import com.example.cocktails.databinding.FragmentNonAlcoholicDrinksBinding
+import com.example.cocktails.view.adapters.CocktailListAdapter
 import com.example.cocktails.viewmodel.NonAlcoholicDrinksViewModel
 
 class NonAlcoholicDrinksFragment : Fragment() {
@@ -21,6 +23,7 @@ class NonAlcoholicDrinksFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentNonAlcoholicDrinksBinding.inflate(inflater,container, false);
+
         return binding!!.root
     }
 
@@ -29,6 +32,9 @@ class NonAlcoholicDrinksFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(NonAlcoholicDrinksViewModel::class.java)
 
         viewModel.getNonAlcoholicDrinks()
+
+
+
         nonAlcoholicDrinksViewModelObserver()
     }
     private fun nonAlcoholicDrinksViewModelObserver() {
@@ -36,6 +42,12 @@ class NonAlcoholicDrinksFragment : Fragment() {
          { nonAlcoholicDrinksResponse ->
             nonAlcoholicDrinksResponse?.let {
                 Log.i("NAD", "${nonAlcoholicDrinksResponse.drinks}")
+                for (item in nonAlcoholicDrinksResponse.drinks){
+                    if(nonAlcoholicDrinksResponse.drinks.isNotEmpty()){
+                        binding!!.rvCocktailsList.visibility = View.VISIBLE
+                        binding!!.tvNoCocktailsAddedYet.visibility = View.GONE
+                    }
+                }
             }})
 
         viewModel._nonAlcoholicDrinksError.observe(viewLifecycleOwner,

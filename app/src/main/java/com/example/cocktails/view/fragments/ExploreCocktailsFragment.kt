@@ -24,7 +24,6 @@ class ExploreCocktailsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-//        val binding = DataBindingUtil.inflate(inflater, R.layout.fragment_explore_cocktails, container, false)
         val binding = DataBindingUtil.inflate<FragmentExploreCocktailsBinding>(inflater, R.layout.fragment_explore_cocktails, container, false)
         viewModel = ViewModelProvider(this)[ExploreCocktailsViewModel::class.java]
 
@@ -35,19 +34,22 @@ class ExploreCocktailsFragment : Fragment() {
             }
         })
 
+        viewModel.navigateToRandomCocktail.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+            if (it) {
+                navigateToRandomCocktail()
+            }
+        })
+
         return binding.root
     }
 
-//    override fun onDestroyView() {
-//        super.onDestroyView()
-//        binding = null
-//    }
-
     fun navigateToNonAlcoholicDrinks() {
-        Log.i("clickNonAlcoholic", findNavController().currentDestination.toString())
         findNavController().navigate(ExploreCocktailsFragmentDirections.actionExploreCocktailsToNonAlcoholicDrinksFragment())
-
         viewModel.btnNavigateToNonAlcoholicDrinksFinished()
     }
 
+    fun navigateToRandomCocktail() {
+        findNavController().navigate(ExploreCocktailsFragmentDirections.actionExploreCocktailsToRandomCocktailFragment())
+        viewModel.btnNavigateToRandomCocktailFinished()
+    }
 }

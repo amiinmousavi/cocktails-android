@@ -1,6 +1,7 @@
 package com.example.cocktails.network
 
 import com.example.cocktails.model.entities.NonAlcoholicDrink
+import com.example.cocktails.model.entities.RandomCocktail
 import com.example.cocktails.utils.Constants
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Retrofit
@@ -17,5 +18,9 @@ class CocktailsApiService {
 
     fun getNonAlcoholicDrinks(): Single<NonAlcoholicDrink.Drinks> {
         return api.getNonAlcoholicDrinks()
+    }
+
+    fun getRandomCocktail(): Single<RandomCocktail.Drinks> {
+        return api.getRandomCocktail()
     }
 }
